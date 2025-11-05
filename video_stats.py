@@ -8,6 +8,7 @@ load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
 CHANNEL_HANDLE = os.getenv("CHANNEL_HANDLE")
+MAX_RESULTS = os.getenv("MAX_RESULTS")
 
 
 def get_playlist_id():
@@ -32,6 +33,9 @@ def get_playlist_id():
 
     except requests.exceptions.RequestException as e:
         raise e
+
+
+base_url = f"https://youtube.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults={MAX_RESULTS}&playlistId={get_playlist_id()}&key={API_KEY}"
 
 
 if __name__ == "__main__":
